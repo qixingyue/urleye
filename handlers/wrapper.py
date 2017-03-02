@@ -8,10 +8,12 @@ def hander_method(fn):
 	handlers[fn.__name__] = fn
 
 def call(name,content):
-	print name
 	if name in handlers:
 		handlers[name](content)
+    else :
+        print "No handler named : %s " % (name)
 
 
 import demo
 import mail
+import redis
