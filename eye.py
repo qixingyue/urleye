@@ -5,6 +5,7 @@ import lib.core
 import sys
 
 if __name__ == "__main__":
+    lib.core.info()
     i = len(sys.argv)
     if i > 1:
         arr = sys.argv[1].split(" ")

@@ -97,4 +97,13 @@ def do_once():
         if should_run(now,watch):
             do_watch(watch)
 
+def info():
+    print """
+*** Urleys Start Ok.
+*** This is One framework run progreames based on urls and actions.
+*** You can define some urls in conf/url.py like "minute hour url acions"
+*** actions can be implode by "," like demo,redis or more 
+*** that means that time will run get content from that url , then handler these contents by handlers defined .
+"""
+
 
