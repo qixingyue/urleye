@@ -1,6 +1,7 @@
 #coding=utf-8
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import log
 
 session = False
 
@@ -23,7 +24,7 @@ def exesql(sql):
 		#s.execute("set names utf8;")
 		o = session.execute(sql)
 	except Exception,e:
-		print sql
+        log.log(sql)
 		session.close()
 		exit()
 		return

@@ -1,4 +1,3 @@
-#/data0/python27/bin/python
 #coding=utf-8
 
 import wrapper

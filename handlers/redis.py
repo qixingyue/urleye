@@ -2,10 +2,11 @@
 
 import wrapper
 import redis
+import lib.log
 
 @wrapper.hander_method
 def redis(items):
-    print "redis handler " + item
+    lib.log.log("redis handler %s " % (items))
     passed = []
     for item in items:
         ip   = item[0]
@@ -13,18 +14,14 @@ def redis(items):
         id_str = ip + "_" + port
         if id_str in passed:
             continue
-        print "Test " + item
+        lib.log.log("Test %s " % (item))
         
         try:
             r = redis.StrictRedis(host=ip, port=port,socket_timeout=2)
             k = "_______A"
             r.set(k,"B")
             if "B" == r.get(k):
-                print "XX : %s " % (id_str)
+                lib.log.log("XX : %s" % (id_str))
         except Exception,e:
-            print e
-
-
-
-
+            lib.log.log(e)
 

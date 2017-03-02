@@ -1,5 +1,7 @@
 #coding=utf-8
 
+import lib.log
+
 
 handlers = {}
 
@@ -11,7 +13,7 @@ def call(name,content):
     if name in handlers:
         handlers[name](content)
     else :
-        print "No handler named : %s " % (name)
+        lib.log.log( "No handler named : %s " % (name) )
 
 
 import demo
