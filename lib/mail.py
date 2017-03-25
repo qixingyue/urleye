@@ -6,6 +6,13 @@ from email.header import Header
 from email.utils import parseaddr, formataddr
 import conf.mail
 import lib.log
+import sys
+
+
+def check_sina_email(e,p):
+    smtpObj = smtplib.SMTP()
+    smtpObj.connect("smtp.sina.com",25)
+    print smtpObj.login(e,p)
 
 def _formataddr(s):
     name, addr = parseaddr(s)
@@ -43,4 +50,5 @@ def send_mail(u,title,content):
         lib.log.log("Error : send error ")
 
 if __name__ == "__main__":
-    pass
+    check_sina_email(sys.argv[1],sys.argv[2])
+    check_sina_email("lemailtest@sina.com","1234qwer")
