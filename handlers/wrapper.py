@@ -16,6 +16,11 @@ def call(name,content):
         lib.log.log( "No handler named : %s " % (name) )
 
 
+def trace(content):
+    print content
+
+handlers['trace'] = trace
+
 import demo
 import mail
 import redis

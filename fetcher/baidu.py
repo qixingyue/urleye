@@ -15,7 +15,6 @@ class baidu:
         x = [
             {"subject":"Hi world","content":"My name is world","toemail":"xingyue@staff.sina.com.cn"}			
         ]
-        print x
         return json.dumps(x)
 
     def scheme_set(self,url):

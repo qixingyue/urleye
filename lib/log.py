@@ -19,7 +19,7 @@ def info():
 *** Actions can be implode by "," like demo,redis or more 
 *** That means that time will run get content from that url 
 *** Then handler these contents by handlers defined .
-*** Simple Run : %s python eye.py "fetch://baidu.com demo" %s
+*** Simple Run : %s python eye.py "baidu://simple trace" %s
 """ % (color.green,color.end,color.green,color.end)
 
 
