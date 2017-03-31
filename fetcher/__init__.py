@@ -1,1 +1,1 @@
-from wrapper import fetch
+from wrapper import scheme_get

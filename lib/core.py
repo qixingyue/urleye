@@ -43,16 +43,16 @@ def parse_watch(str):
 def do_watch(item):
     if "url" in item and "actions" in item:
 
-        if item["url"][0:4] == "http" :
+        parse_item = urlparse.urlparse(item['url'])
+
+        scheme = parse_item.scheme
+
+        if scheme == 'http':
             response = requests.get(item['url'])
-            if response.status_code == 200 :
+            if response.status_code == 200:
                 content = response.text
-        elif item["url"][0:5] == "fetch":
-            f_items = item["url"][8:].split(".")
-            if len(f_items) != 0 :
-                fetcher_name = f_items.pop(0) 
-                params = f_items
-                content = fetcher.fetch(fetcher_name,params)
+        elif scheme != "":
+            content = fetcher.scheme_get(scheme,item['url'])
         else :
             content = False
 
@@ -60,9 +60,11 @@ def do_watch(item):
             names = item['actions'].split(",")
             for n in names:
                 handlers.call(n,content)
+        else:
+            log.error("No Content find from : %s " % ( item['url']))
 
     else :
-        log.log("ITEM ERROR!")
+        log.error("ITEM ERROR!")
 
 def should_run(now,w):
 
@@ -78,12 +80,15 @@ def should_run(now,w):
     return flags[0] and flags[1] and flags[2]
 
 
-def simple_do(url):
+def simple_do(item):
     """
-    Only contains url and actions like this :
+    Only contains item and actions like this :
     http://baidu.com demo
     """
-    arr = url.split(" ")
+    arr = item.split(" ")
+    if len(arr) != 2 :
+        log.error("item invalid %s" % (item)) 
+        exit(1)
     i = {"url":arr[0],"actions":arr[1]}
     do_watch(i)
 
